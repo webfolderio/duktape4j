@@ -30,7 +30,7 @@ install:
         )
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
       }
-      $env:Path +=";C:\maven\apache-maven-3.3.9\bin;%JAVA_HOME%\bin"
+      $env:Path +=";C:\maven\apache-maven-3.5.4\bin;%JAVA_HOME%\bin"
 build_script:
   - cd native && build.bat
   - mvn test
