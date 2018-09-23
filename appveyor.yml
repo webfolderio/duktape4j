@@ -14,8 +14,6 @@ platform: x64
 
 configuration: Release
 
-MSYS2_ARCH: x86_64
-
 environment:
   matrix:
     - compiler: msys2
