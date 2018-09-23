@@ -1,9 +1,8 @@
 C:\Python27\Scripts\pip2.exe install pyyaml
-c:\Python27\Scripts\pip2.exe install patch
 git clone https://github.com/svaarala/duktape.git
 cd duktape
 git checkout 04a08e8cbe7101ee70e7f6de33619c5cb7f199ce
-c:\Python27\python.exe tools/configure.py ^
+C:\Python27\python.exe tools/configure.py ^
  --source-directory src-input ^
  --output-directory src-custom ^
  --config-metadata config ^
@@ -23,11 +22,12 @@ copy /Y CMakeLists.txt duktape-android\duktape\src\main\jni\CMakeLists.txt
 copy /Y duktape-jni.cpp duktape-android\duktape\src\main\jni\duktape-jni.cpp
 copy /Y JavaMethod.cpp duktape-android\duktape\src\main\jni\java\JavaMethod.cpp
 copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExceptions.cpp
-patch duktape-android\duktape\src\main\jni\duktape\duk_config.h timezone.patch
+"C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\duktape\duk_config.h timezone.patch
 cd duktape-android\duktape\src\main\jni
 mkdir build
 cd build
 cmake .. -G "Visual Studio 15 2017 Win64"
 cmake --build . --config Release
 cd ..\..\..\..\..\..
+mkdir ..\src\main\resources\META-INF
 copy /Y duktape-android\duktape\src\main\jni\build\Release\duktape.dll ..\src\main\resources\META-INF
