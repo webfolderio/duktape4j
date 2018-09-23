@@ -8,7 +8,7 @@ C:\Python27\python.exe tools/configure.py ^
  --config-metadata config ^
  --platform windows ^
  --architecture x64 ^
- --compiler msvc ^
+ --compiler gcc ^
  --option-file config/examples/performance_sensitive.yaml ^
  -DDUK_USE_GET_MONOTONIC_TIME_WINDOWS_QPC ^
  -DDUK_USE_DATE_NOW_WINDOWS
@@ -23,11 +23,13 @@ copy /Y duktape-jni.cpp duktape-android\duktape\src\main\jni\duktape-jni.cpp
 copy /Y JavaMethod.cpp duktape-android\duktape\src\main\jni\java\JavaMethod.cpp
 copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExceptions.cpp
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\duktape\duk_config.h timezone.patch
+"C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\java\JavaType.cpp javatype.patch
 cd duktape-android\duktape\src\main\jni
 mkdir build
 cd build
-cmake .. -G "Visual Studio 15 2017 Win64"
-cmake --build . --config Release
+cmake .. -G "MSYS Makefiles"
+make
 cd ..\..\..\..\..\..
 mkdir ..\src\main\resources\META-INF
-copy /Y duktape-android\duktape\src\main\jni\build\Release\duktape.dll ..\src\main\resources\META-INF
+copy /Y duktape-android\duktape\src\main\jni\build\libduktape.dll ..\src\main\resources\META-INF\duktape.dll
+strip ..\src\main\resources\META-INF\duktape.dll
