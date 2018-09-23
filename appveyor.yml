@@ -10,18 +10,18 @@ skip_non_tags: true
 
 skip_branch_with_pr: true
 
-image: Visual Studio 2017
-
 platform: x64
 
 configuration: Release
 
 MSYS2_ARCH: x86_64
-MSYS2_DIR: msys64
 
 environment:
   matrix:
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+    - compiler: msys2
+      JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+      MSYS2_ARCH: x86_64
+      MSYS2_DIR: msys64
 
 install:
   - ps: |
