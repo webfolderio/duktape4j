@@ -240,7 +240,6 @@ public final class DuktapeSetTest {
       }
     });
 
-    // TODO: add an evaluate interface that supports other types.
     assertThat(duktape.evaluate("value.b(false).toString()")).isEqualTo("true");
     assertThat(duktape.evaluate("value.i(4).toString()")).isEqualTo("16");
     assertThat(duktape.evaluate("value.d(6.28318).toString()")).isEqualTo("3.14159");
@@ -281,7 +280,6 @@ public final class DuktapeSetTest {
       }
     });
 
-    // TODO: add an evaluate interface that supports other types.
     assertThat(duktape.evaluate("value.b(false).toString()")).isEqualTo("true");
     assertThat(duktape.evaluate("value.i(4).toString()")).isEqualTo("16");
     assertThat(duktape.evaluate("value.d(6.28318).toString()")).isEqualTo("3.14159");

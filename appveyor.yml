@@ -16,8 +16,7 @@ configuration: Release
 
 environment:
   matrix:
-    - MSYS2_ARCH: x86_64
-      MSYS2_BITS: 64
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
 
 install:
   - ps: |
@@ -31,5 +30,4 @@ install:
       }
       $env:Path +=";C:\maven\apache-maven-3.5.4\bin;%JAVA_HOME%\bin"
 build_script:
-  - cd native && build.bat
-  - mvn test
+  - mvn -q test
