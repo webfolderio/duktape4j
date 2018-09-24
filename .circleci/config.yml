@@ -14,6 +14,7 @@ jobs:
 
       - run: sudo apt-get -q --yes install python
       - run: sudo apt-get -q --yes install python-pip
+      - run: sudo apt-get -q --yes install cmake
       - run: cd native && ./build.sh
 
       - restore_cache:
