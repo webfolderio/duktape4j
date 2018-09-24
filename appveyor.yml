@@ -23,7 +23,15 @@ build_script:
   - mvn -DskipTests -q clean package
 
 test_script:
-  - mvn -q test
+  - mvn -q surefire-report:report
+
+after_build:
+  - ps: |
+        $wc = New-Object 'System.Net.WebClient'
+        Get-ChildItem . -Name -Recurse 'TEST-*.xml'  |
+        Foreach-Object {
+            $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $_))
+        }
 
 artifacts:
   - path: src\main\resources\META-INF\duktape.dll
