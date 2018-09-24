@@ -29,3 +29,5 @@ native/duktape-android
 /.project
 /.classpath
 /src/main/resources/META-INF/duktape.dll
+/src/main/resources/META-INF/duktape.dll
+/src/main/resources/META-INF/duktape.so
