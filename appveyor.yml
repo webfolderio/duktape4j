@@ -12,10 +12,10 @@ install:
   - cmd: echo %M2_HOME%
 
 build_script:
-  - mvn clean package -DskipTests
+  - mvn -q clean package -DskipTests
 
 test_script:
-  - mvn -q test
+  - mvn -Dduktape4j.library.path=C:\projects\duktape4j\src\main\resources\META-INF\duktape.dll -q test
 
 cache:
   - C:\maven\

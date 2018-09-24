@@ -36,13 +36,18 @@ import java.util.logging.Logger;
 public final class Duktape implements Closeable {
 
     static {
-        String os = getProperty("os.name").toLowerCase(ENGLISH);
-        boolean win = os.contains("windows");
-        if (win) {
-            loadLibrary("META-INF/duktape.dll");
-        } else {
-            loadLibrary("META-INF/duktape.so");
-        }
+    	String path = getProperty("duktape4j.library.path");
+    	if ( path != null && ! path.trim().isEmpty() ) {
+    		load(path);
+    	} else {
+            String os = getProperty("os.name").toLowerCase(ENGLISH);
+            boolean win = os.contains("windows");
+            if (win) {
+                loadLibrary("META-INF/duktape.dll");
+            } else {
+                loadLibrary("META-INF/duktape.so");
+            }
+    	}
     }
 
   /**
