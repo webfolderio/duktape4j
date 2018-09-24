@@ -1,0 +1,7 @@
+dependencies:
+  override:
+    - mvn -DskipTests clean package dependency:resolve-plugins dependency:go-offline
+
+test:
+  override:
+    - mvn -o surefire:test
