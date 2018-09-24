@@ -17,8 +17,10 @@ package io.webfolder.ducktape4j;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import okio.BufferedSource;
@@ -27,13 +29,19 @@ import okio.Okio;
 public class OctaneTest {
 
 	@Test
+	@Ignore
 	public void test() throws Throwable {
 		try (Duktape duktape = Duktape.create()) {
-			for (String file : new File("src/test/resources/octane").list()) {
+			String[] files = new File("src/test/resources/octane").list();
+			Arrays.sort(files);
+			for (String file : files) {
 				long tookMs = evaluateAsset(duktape, "octane/" + file);
 				StringBuilder output = new StringBuilder();
 				output.append(file).append(" eval took ").append(tookMs).append(" ms");
 				System.out.println(output.toString());
+				evaluateAsset(duktape, "octane.js");
+				String results = (String) duktape.evaluate("getResults();");
+				System.out.println(results);
 			}
 		}
 	}
