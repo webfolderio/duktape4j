@@ -24,5 +24,7 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
         
-      # run tests!
       - run: mvn -q test
+
+      - store_artifacts:
+          path: src/main/resources/META-INF/duktape.so
