@@ -19,8 +19,15 @@ This library is suitable for use in production systems.
 
 Supported Platforms
 -------------------
-cdp4j has been tested under Windows 10 and Ubuntu.
+ducktape4j has been tested under Windows 10 and Ubuntu.
 
 How it is tested
 ----------------
-cdp4j is regularly built and tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) and [circleci](https://circleci.com/gh/webfolderio/duktape4j).
+ducktape4j is regularly built and tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) and [circleci](https://circleci.com/gh/webfolderio/duktape4j).
+
+License
+-------
+[Apache License](https://github.com/webfolderio/duktape4j/blob/master/LICENSE)
+
+Note: The included C code from Duktape is licensed under [MIT](https://github.com/svaarala/duktape/blob/master/LICENSE.txt) and duktape-android licensed under [Apache](https://github.com/square/duktape-android/blob/master/LICENSE).
+
