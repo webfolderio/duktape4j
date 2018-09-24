@@ -1,4 +1,6 @@
 jdk: openjdk11
+language: java
+group: travis_latest
 script:
   - uname -a
   - mvn -q test
