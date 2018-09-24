@@ -20,4 +20,11 @@ before_build:
 
 build_script:
   - cd native && build.bat
+  - mvn -DskipTests -q clean package
+
+test_script:
   - mvn -q test
+
+  artifacts:
+  - path: src\main\resources\META-INF\duktape.dll
+    name: Duktape DLL
