@@ -10,6 +10,12 @@ skip_branch_with_pr: true
 platform: x64
 configuration: Release
 
+before_build:
+  # Workaround for CMake not wanting sh.exe on PATH for MinGW
+  - set PATH=%PATH:C:\Program Files (x86)\Git\bin;=%
+  - set PATH=C:\MinGW\bin;%PATH%
+
+
 environment:
   matrix:
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
