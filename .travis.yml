@@ -1,6 +1,11 @@
 jdk: openjdk11
 language: java
-group: travis_latest
+sudo: required
+services:
+  - docker
+env:
+ matrix:
+  - OS_TYPE=centos OS_VERSION=7
 script:
   - sudo apt-get install libstdc++6
   - uname -a
