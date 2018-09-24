@@ -1,3 +1,4 @@
 jdk: openjdk11
 script:
+  - uname -a
   - mvn -q test
