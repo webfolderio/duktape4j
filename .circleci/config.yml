@@ -12,6 +12,8 @@ jobs:
     steps:
       - checkout
 
+      - run: native/build.sh
+
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
