@@ -28,4 +28,4 @@ jobs:
 
       - store_artifacts:
           path: src/main/resources/META-INF/duktape.so
-          destination: library
+          destination: duktape.so
