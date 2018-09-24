@@ -1,8 +1,8 @@
-pip2 show pyyaml || pip2 install pyyaml
+pip show pyyaml || pip install pyyaml
 git clone --quiet https://github.com/svaarala/duktape.git
 cd duktape
 git checkout --quiet 04a08e8cbe7101ee70e7f6de33619c5cb7f199ce
-python2 tools/configure.py \
+python tools/configure.py \
  --source-directory src-input \
  --output-directory src-custom \
  --config-metadata config \
