@@ -2,7 +2,7 @@
 
 [![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=windows&logo=windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=ubuntu)](https://circleci.com/gh/webfolderio/duktape4j)
 
-Java bindings for [duktape](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
+Java binding for [Duktape](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
 
 ducktape4j is Java port of [duktape-android](https://github.com/square/duktape-android/).
 
@@ -29,5 +29,5 @@ License
 -------
 Licensed under the [Apache License](https://github.com/webfolderio/duktape4j/blob/master/LICENSE).
 
-Note: The included C code from Duktape is licensed under [MIT](https://github.com/svaarala/duktape/blob/master/LICENSE.txt) and [duktape-android](https://github.com/square/duktape-android) licensed under [Apache](https://github.com/square/duktape-android/blob/master/LICENSE).
+Note: The included C code from [Duktape](https://github.com/svaarala/duktape) is licensed under [MIT](https://github.com/svaarala/duktape/blob/master/LICENSE.txt) and [duktape-android](https://github.com/square/duktape-android) licensed under [Apache](https://github.com/square/duktape-android/blob/master/LICENSE).
 
