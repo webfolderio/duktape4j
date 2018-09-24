@@ -12,9 +12,9 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo apt-get install python
-      - run: sudo apt-get install python-pip
-      - run: native/build.sh
+      - run: sudo apt-get -q --yes install python
+      - run: sudo apt-get -q --yes install python-pip
+      - run: cd native && ./build.sh
 
       - restore_cache:
           keys:
