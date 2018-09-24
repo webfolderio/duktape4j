@@ -25,6 +25,6 @@ build_script:
 test_script:
   - mvn -q test
 
-  artifacts:
+artifacts:
   - path: src\main\resources\META-INF\duktape.dll
     name: Duktape DLL
