@@ -19,11 +19,11 @@ This library is suitable for use in production systems.
 
 Supported Platforms
 -------------------
-ducktape4j has been tested under Windows 10 and Ubuntu.
+ducktape4j has been tested under Windows 10 (64-bit) and Ubuntu (64-bit).
 
 How it is tested
 ----------------
-ducktape4j is regularly built and tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) and [circleci](https://circleci.com/gh/webfolderio/duktape4j).
+ducktape4j is regularly tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) (windows) and [circleci](https://circleci.com/gh/webfolderio/duktape4j) (ubuntu).
 
 License
 -------
