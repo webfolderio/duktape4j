@@ -2,5 +2,6 @@ jdk: openjdk11
 language: java
 group: travis_latest
 script:
+  - sudo apt-get install libstdc++6
   - uname -a
   - mvn -q test
