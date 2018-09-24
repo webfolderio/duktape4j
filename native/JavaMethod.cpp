@@ -22,8 +22,10 @@
 #include "JavaType.h"
 #include "../LocalFrame.h"
 
+#ifdef __MINGW32__
 #include <BaseTsd.h>
 typedef SSIZE_T ssize_t;
+#endif
 
 JavaMethod::JavaMethod(JavaTypeMap& typeMap, JNIEnv* env, jobject method) {
   jclass methodClass = env->GetObjectClass(method);

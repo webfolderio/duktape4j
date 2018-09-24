@@ -21,7 +21,10 @@
 #include "java/GlobalRef.h"
 #include "java/JavaExceptions.h"
 
+#ifdef __MINGW32__
 #define timegm _mkgmtime
+#endif
+
 #include <time.h>
 #include <iomanip>
 #include <sstream>
@@ -42,6 +45,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     return JNI_VERSION_1_8;
 }
 
+#ifdef __MINGW32__
 char* strptime(const char* s,
     const char* f,
     struct tm* tm) {
@@ -59,6 +63,7 @@ char* strptime(const char* s,
     }
     return (char*)(s + input.tellg());
 }
+#endif
 
 duk_int_t android__get_local_tzoffset(duk_double_t time) {
     if (globalVM != NULL) {
