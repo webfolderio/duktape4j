@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 SET(BUILD_SHARED_LIBS ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 find_package(JNI)
 
@@ -25,4 +26,8 @@ list(FILTER duktape_SRC EXCLUDE REGEX ".*CMakeCCompilerId.c$")
 
 add_library(duktape SHARED ${duktape_SRC})
 
-target_link_libraries(duktape -static -static-libstdc++)
+IF (WIN32)
+    target_link_libraries(duktape -static -static-libstdc++)
+ELSE()
+    target_link_libraries(duktape)
+ENDIF()
