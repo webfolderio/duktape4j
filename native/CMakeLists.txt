@@ -4,13 +4,8 @@ SET(BUILD_SHARED_LIBS ON)
 
 find_package(JNI)
 
-IF (WIN32)
-    set(CMAKE_CXX_FLAGS_RELEASE "/MT")
-    set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
-ENDIF()
-
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_RELEASE} -s")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_RELEASE} -s")
 
 if (JNI_FOUND)
     message (STATUS "JNI_INCLUDE_DIRS=${JNI_INCLUDE_DIRS}")
@@ -30,4 +25,4 @@ list(FILTER duktape_SRC EXCLUDE REGEX ".*CMakeCCompilerId.c$")
 
 add_library(duktape SHARED ${duktape_SRC})
 
-target_link_libraries(duktape)
+target_link_libraries(duktape -static -static-libstdc++)
