@@ -8,7 +8,7 @@ cache:
   - $HOME/.m2
 
 before_install:
-  - brew install gcc
+  - brew link --overwrite gcc
 
 script:
   - cd native && ./build-macos.sh
