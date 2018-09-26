@@ -15,6 +15,7 @@
  */
 package io.webfolder.ducktape4j;
 
+import static java.io.File.pathSeparator;
 import static java.lang.System.getProperty;
 import static java.lang.System.load;
 import static java.nio.file.Files.copy;
@@ -35,17 +36,25 @@ import java.util.logging.Logger;
 /** A simple EMCAScript (Javascript) interpreter. */
 public final class Duktape implements Closeable {
 
+    private static final String  OS      = getProperty("os.name").toLowerCase(ENGLISH);
+
+    private static final boolean WINDOWS = ";".equals(pathSeparator);
+
+    private static final boolean LINUX   = "linux".contains(OS);
+
+    private static final boolean MAC     = OS.contains("mac");
+
     static {
     	String path = getProperty("duktape4j.library.path");
     	if ( path != null && ! path.trim().isEmpty() ) {
     		load(path);
     	} else {
-            String os = getProperty("os.name").toLowerCase(ENGLISH);
-            boolean win = os.contains("windows");
-            if (win) {
+            if (WINDOWS) {
                 loadLibrary("META-INF/duktape.dll");
-            } else {
+            } else if (LINUX) {
                 loadLibrary("META-INF/duktape.so");
+            } else if (MAC) {
+                loadLibrary("META-INF/duktape.dylib");
             }
     	}
     }

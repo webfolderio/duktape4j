@@ -5,15 +5,14 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 find_package(JNI)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_RELEASE} -s")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_RELEASE} -s")
-
 if (JNI_FOUND)
     message (STATUS "JNI_INCLUDE_DIRS=${JNI_INCLUDE_DIRS}")
     message (STATUS "JNI_LIBRARIES=${JNI_LIBRARIES}")
+    message (STATUS "JAVA_INCLUDE_PATH=${JAVA_INCLUDE_PATH}")
+    message (STATUS "JAVA_INCLUDE_PATH2=${JAVA_INCLUDE_PATH2}")
 endif()
-
-include_directories(${JNI_INCLUDE_DIRS})
+    INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH})
+    INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH2})
 
 file(GLOB_RECURSE duktape_SRC
     "*.h"
@@ -26,8 +25,8 @@ list(FILTER duktape_SRC EXCLUDE REGEX ".*CMakeCCompilerId.c$")
 
 add_library(duktape SHARED ${duktape_SRC})
 
-IF (WIN32)
+if(WIN32 OR APPLE)
     target_link_libraries(duktape -static -static-libstdc++)
-ELSE()
+else()
     target_link_libraries(duktape)
-ENDIF()
+endif()
