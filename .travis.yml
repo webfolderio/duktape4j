@@ -10,8 +10,6 @@ cache:
   - $HOME/.m2
 
 before_install:
-  - brew unlink gcc
-  - brew unlink g++
   - brew install gcc
 
 script:
