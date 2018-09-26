@@ -10,7 +10,7 @@ cache:
   - $HOME/.m2
 
 before_install:
-  - brew --force --dry-run install gcc
+  - brew install --force gcc
 
 script:
   - cd native && ./build-macos.sh
