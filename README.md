@@ -15,7 +15,9 @@ Both the JRE and the JDK are suitable for use with this library.
 
 Supported Operating Systems
 -----------------------------
-Windows 8 & 10, Ubuntu, MacOS
+ * Windows 8 & 10
+ * Ubuntu
+ * MacOS
 
 Stability
 ---------
