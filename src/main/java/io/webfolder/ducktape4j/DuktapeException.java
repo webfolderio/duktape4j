@@ -51,7 +51,7 @@ public final class DuktapeException extends RuntimeException {
       return;
     }
     // We have a stacktrace following the message.  Add it to the exception.
-    List<StackTraceElement> elements = new ArrayList<>();
+    List<StackTraceElement> elements = new ArrayList<StackTraceElement>();
 
     // Splice the JavaScript stack in right above the call to Duktape.evaluate.
     boolean spliced = false;

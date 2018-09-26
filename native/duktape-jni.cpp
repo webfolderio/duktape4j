@@ -42,7 +42,7 @@ static JavaVM *globalVM;
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     globalVM = vm;
-    return JNI_VERSION_1_8;
+    return JNI_VERSION_1_6;
 }
 
 #ifdef __MINGW32__
@@ -68,7 +68,7 @@ char* strptime(const char* s,
 duk_int_t android__get_local_tzoffset(duk_double_t time) {
     if (globalVM != NULL) {
         JNIEnv *env;
-        int status = globalVM->GetEnv((void **)&env, JNI_VERSION_1_8);
+        int status = globalVM->GetEnv((void **)&env, JNI_VERSION_1_6);
         if (status == JNI_OK) {
             if (globalVM->AttachCurrentThread((void **)&env, NULL) == JNI_OK) {
                 auto tzClass = env->FindClass("java/util/TimeZone");

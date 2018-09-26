@@ -16,7 +16,6 @@
 package io.webfolder.ducktape4j;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -31,22 +30,21 @@ public class OctaneTest {
 	@Test
 	@Ignore
 	public void test() throws Throwable {
-		try (Duktape duktape = Duktape.create()) {
-			String[] files = new File("src/test/resources/octane").list();
-			Arrays.sort(files);
-			for (String file : files) {
-				long tookMs = evaluateAsset(duktape, "octane/" + file);
-				StringBuilder output = new StringBuilder();
-				output.append(file).append(" eval took ").append(tookMs).append(" ms");
-				System.out.println(output.toString());
-				evaluateAsset(duktape, "octane.js");
-				String results = (String) duktape.evaluate("getResults();");
-				System.out.println(results);
-			}
+		Duktape duktape = Duktape.create();
+		String[] files = new File("src/test/resources/octane").list();
+		Arrays.sort(files);
+		for (String file : files) {
+			long tookMs = evaluateAsset(duktape, "octane/" + file);
+			StringBuilder output = new StringBuilder();
+			output.append(file).append(" eval took ").append(tookMs).append(" ms");
+			System.out.println(output.toString());
+			evaluateAsset(duktape, "octane.js");
+			String results = (String) duktape.evaluate("getResults();");
+			System.out.println(results);
 		}
 	}
 
-	private long evaluateAsset(Duktape duktape, String file) throws IOException {
+	private long evaluateAsset(Duktape duktape, String file) throws Throwable {
 		BufferedSource source = Okio.buffer(Okio.source(new File("src/test/resources/" + file)));
 		String script = source.readUtf8();
 		source.close();

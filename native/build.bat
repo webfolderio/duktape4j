@@ -27,7 +27,7 @@ copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExcepti
 cd duktape-android\duktape\src\main\jni
 mkdir build
 cd build
-cmake .. -G "MSYS Makefiles"
+cmake .. -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release
 make
 cd ..\..\..\..\..\..
 mkdir ..\src\main\resources\META-INF

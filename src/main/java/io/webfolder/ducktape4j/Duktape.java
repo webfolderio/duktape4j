@@ -116,7 +116,7 @@ public final class Duktape implements Closeable {
     if (!type.isInstance(object)) {
       throw new IllegalArgumentException(object.getClass() + " is not an instance of " + type);
     }
-    LinkedHashMap<String, Method> methods = new LinkedHashMap<>();
+    LinkedHashMap<String, Method> methods = new LinkedHashMap<String, Method>();
     for (Method method : type.getMethods()) {
       if (methods.put(method.getName(), method) != null) {
         throw new UnsupportedOperationException(method.getName() + " is overloaded in " + type);
@@ -142,7 +142,7 @@ public synchronized <T> T get(final String name, final Class<T> type) {
     if (type.getInterfaces().length > 0) {
       throw new UnsupportedOperationException(type + " must not extend other interfaces");
     }
-    LinkedHashMap<String, Method> methods = new LinkedHashMap<>();
+    LinkedHashMap<String, Method> methods = new LinkedHashMap<String, Method>();
     for (Method method : type.getMethods()) {
       if (methods.put(method.getName(), method) != null) {
         throw new UnsupportedOperationException(method.getName() + " is overloaded in " + type);
@@ -204,11 +204,21 @@ public synchronized <T> T get(final String name, final Class<T> type) {
       ClassLoader cl = Duktape.class.getClassLoader();
       String os = getProperty("os.name").toLowerCase(ENGLISH);
       boolean win = os.contains("windows");
-      try (InputStream is = cl.getResourceAsStream(lib)) {
+      InputStream is = null;
+      try {
+    	  is = cl.getResourceAsStream(lib);
           libFile = createTempFile("duktape", win ? ".dll" : ".so");
           copy(is, libFile, REPLACE_EXISTING);
       } catch (IOException e) {
           throw new RuntimeException(e);
+      } finally {
+    	  if ( is != null ) {
+    		  try {
+				is.close();
+			} catch (IOException e) {
+				// ignore
+			}
+    	  }
       }
       libFile.toFile().deleteOnExit();
       load(libFile.toAbsolutePath().toString());

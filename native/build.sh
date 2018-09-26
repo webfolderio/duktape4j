@@ -25,7 +25,7 @@ patch duktape-android/duktape/src/main/jni/java/JavaType.cpp javatype.patch
 cd duktape-android/duktape/src/main/jni
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 cd ../../../../../..
 mkdir -p ../src/main/resources/META-INF

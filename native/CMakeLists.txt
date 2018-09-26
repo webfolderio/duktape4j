@@ -5,7 +5,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 find_package(JNI)
 
-set(CMAKE_CXX_FLAGS_RELEASE "-no-terminate")
+set(CMAKE_CXX_FLAGS_RELEASE "-Wno-terminate")
 
 if (JNI_FOUND)
     message (STATUS "JNI_INCLUDE_DIRS=${JNI_INCLUDE_DIRS}")
