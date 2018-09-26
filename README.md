@@ -25,7 +25,7 @@ Supported Platforms
 
 How it is tested
 ----------------
-ducktape4j is regularly tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) (windows), [circleci](https://circleci.com/gh/webfolderio/duktape4j) (ubuntu) and [travis](https://travis-ci.org/webfolderio/duktape4j) (macOS).
+ducktape4j is regularly tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) (Windows), [circleci](https://circleci.com/gh/webfolderio/duktape4j) (Ubuntu) and [travis](https://travis-ci.org/webfolderio/duktape4j) (macOS).
 
 License
 -------
