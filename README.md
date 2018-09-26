@@ -9,7 +9,7 @@ ducktape4j is Java port of [duktape-android](https://github.com/square/duktape-a
 Supported Java Versions
 -----------------------
 
-Oracle & OpenJDK Java 6, 7, 8, 9, 10, 11.
+Oracle & OpenJDK Java 8, 9, 10, 11.
 
 Both the JRE and the JDK are suitable for use with this library.
 
