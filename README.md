@@ -1,6 +1,6 @@
 # duktape4j
 
-[![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=windows&logo=windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![circleci](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=ubuntu)](https://circleci.com/gh/webfolderio/duktape4j) [![travis](https://img.shields.io/travis/webfolderio/duktape4j.svg?label=macOS&logo=travis)](https://travis-ci.org/webfolderio/duktape4j)
+[![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![circleci](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=ubuntu)](https://circleci.com/gh/webfolderio/duktape4j) [![travis](https://img.shields.io/travis/webfolderio/duktape4j.svg?label=macOS)](https://travis-ci.org/webfolderio/duktape4j)
 
 Java binding for [Duktape](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
 
@@ -25,7 +25,7 @@ Supported Platforms
 
 How it is tested
 ----------------
-ducktape4j is regularly tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) (windows), [circleci](https://circleci.com/gh/webfolderio/duktape4j) (ubuntu) [travis](https://travis-ci.org/webfolderio/duktape4j) (macOS).
+ducktape4j is regularly tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) (windows), [circleci](https://circleci.com/gh/webfolderio/duktape4j) (ubuntu) and [travis](https://travis-ci.org/webfolderio/duktape4j) (macOS).
 
 License
 -------
