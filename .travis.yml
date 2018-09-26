@@ -1,3 +1,5 @@
+sudo: enabled
+
 matrix:
   include:
    - os: osx
@@ -10,7 +12,7 @@ cache:
   - $HOME/.m2
 
 before_install:
-  - brew install gcc
+  - sudo brew install gcc
 
 script:
   - cd native && ./build-macos.sh
