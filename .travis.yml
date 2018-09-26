@@ -33,3 +33,6 @@ script:
   - cd native && ./build-macos.sh && cd ..
   - mvn -q -DskipTests clean package
   - mvn -q surefire-report:report
+  - rm -rf native/duktape/
+  - rm -rf native/duktape-android/
+  - rm -rf target/
