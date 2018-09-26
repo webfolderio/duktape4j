@@ -11,9 +11,9 @@ python2 tools/configure.py \
  --compiler gcc \
  --option-file config/examples/performance_sensitive.yaml
 cd ..
-git clone https://github.com/square/duktape-android.git
+git clone --quiet https://github.com/square/duktape-android.git
 cd duktape-android
-git checkout 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
+git checkout --quiet 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
 cd ..
 cp duktape/src-custom/* duktape-android/duktape/src/main/jni/duktape
 cp CMakeLists.txt duktape-android/duktape/src/main/jni/CMakeLists.txt

@@ -13,9 +13,9 @@ C:\Python27\python.exe tools/configure.py ^
  -DDUK_USE_GET_MONOTONIC_TIME_WINDOWS_QPC ^
  -DDUK_USE_DATE_NOW_WINDOWS
 cd ..
-git clone https://github.com/square/duktape-android.git
+git clone --quiet https://github.com/square/duktape-android.git
 cd duktape-android
-git checkout 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
+git checkout --quiet 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
 cd ..
 copy /Y duktape\src-custom\*.* duktape-android\duktape\src\main\jni\duktape
 copy /Y CMakeLists.txt duktape-android\duktape\src\main\jni\CMakeLists.txt
