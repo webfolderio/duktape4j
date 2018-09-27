@@ -3,7 +3,6 @@ git clone --quiet https://github.com/svaarala/duktape.git
 cd duktape
 git checkout --quiet 04a08e8cbe7101ee70e7f6de33619c5cb7f199ce
 C:\Python27\python.exe tools/configure.py ^
- --fixup-file ../java_timezone.h ^
  --source-directory src-input ^
  --output-directory src-custom ^
  --config-metadata config ^
@@ -23,6 +22,7 @@ copy /Y CMakeLists.txt duktape-android\duktape\src\main\jni\CMakeLists.txt
 copy /Y duktape-jni.cpp duktape-android\duktape\src\main\jni\duktape-jni.cpp
 copy /Y JavaMethod.cpp duktape-android\duktape\src\main\jni\java\JavaMethod.cpp
 copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExceptions.cpp
+"C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\duktape\duk_config.h timezone.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\java\JavaType.cpp javatype.patch
 cd duktape-android\duktape\src\main\jni
 mkdir build
