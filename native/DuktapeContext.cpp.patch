@@ -1,0 +1,11 @@
+--- "duktape-android/duktape/src/main/jni/DuktapeContext.cpp"	2018-10-11 13:18:25.801518100 +0300
++++ "duktape-android/duktape/src/main/jni/DuktapeContext - Copy.cpp"	2018-10-11 11:08:28.696679000 +0300
+@@ -117,6 +117,8 @@
+     throw std::bad_alloc();
+   }
+ 
++  duk_module_duktape_init(m_context);
++
+   // Stash the JVM object in the context, so we can find our way back from a Duktape C callback.
+   duk_push_global_stash(m_context);
+   duk_push_pointer(m_context, javaVM);

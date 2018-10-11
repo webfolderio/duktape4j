@@ -18,12 +18,16 @@ cd duktape-android
 git checkout --quiet 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
 cd ..
 copy /Y duktape\src-custom\*.* duktape-android\duktape\src\main\jni\duktape
+copy /Y duktape\extras\module-duktape\duk_module_duktape.h duktape-android\duktape\src\main\jni\duktape
+copy /Y duktape\extras\module-duktape\duk_module_duktape.c duktape-android\duktape\src\main\jni\duktape
 copy /Y CMakeLists.txt duktape-android\duktape\src\main\jni\CMakeLists.txt
 copy /Y duktape-jni.cpp duktape-android\duktape\src\main\jni\duktape-jni.cpp
 copy /Y JavaMethod.cpp duktape-android\duktape\src\main\jni\java\JavaMethod.cpp
 copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExceptions.cpp
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\duktape\duk_config.h timezone.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\java\JavaType.cpp javatype.patch
+"C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.h DuktapeContext.h.patch
+"C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.cpp DuktapeContext.cpp.patch
 cd duktape-android\duktape\src\main\jni
 mkdir build
 cd build

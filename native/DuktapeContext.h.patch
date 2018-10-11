@@ -1,0 +1,10 @@
+--- "duktape-android/duktape/src/main/jni/DuktapeContext.h"	2018-10-11 13:18:25.770276900 +0300
++++ "duktape-android/duktape/src/main/jni/DuktapeContext - Copy.h"	2018-10-11 11:16:04.564724700 +0300
+@@ -19,6 +19,7 @@
+ #include <jni.h>
+ #include <list>
+ #include "duktape/duktape.h"
++#include "duktape/duk_module_duktape.h"
+ #include "javascript/JavaScriptObject.h"
+ #include "java/JavaType.h"
+ 

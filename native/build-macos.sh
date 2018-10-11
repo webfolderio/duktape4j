@@ -16,12 +16,16 @@ cd duktape-android
 git checkout --quiet 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
 cd ..
 cp duktape/src-custom/* duktape-android/duktape/src/main/jni/duktape
+cp duktape/extras/module-duktape/duk_module_duktape.h duktape-android/duktape/src/main/jni/duktape
+cp duktape/extras/module-duktape/duk_module_duktape.c duktape-android/duktape/src/main/jni/duktape
 cp CMakeLists.txt duktape-android/duktape/src/main/jni/CMakeLists.txt
 cp duktape-jni.cpp duktape-android/duktape/src/main/jni/duktape-jni.cpp
 cp JavaMethod.cpp duktape-android/duktape/src/main/jni/java/JavaMethod.cpp
 cp JavaExceptions.cpp duktape-android/duktape/src/main/jni/java/JavaExceptions.cpp
 patch duktape-android/duktape/src/main/jni/duktape/duk_config.h timezone.patch
 patch duktape-android/duktape/src/main/jni/java/JavaType.cpp javatype.patch
+patch duktape-android/duktape/src/main/jni/DuktapeContext.h DuktapeContext.h.patch
+patch duktape-android/duktape/src/main/jni/DuktapeContext.cpp DuktapeContext.cpp.patch
 cd duktape-android/duktape/src/main/jni
 mkdir build
 cd build
