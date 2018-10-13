@@ -7,9 +7,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class VueTest {
+
+    private long start;
+
+    @Before
+    public void before() {
+        start = System.currentTimeMillis();
+    }
+
+    @After
+    public void end() {
+        System.out.println("elapsed time: " + (System.currentTimeMillis() - start));
+    }
 
     @Test
     public void test() throws IOException {
