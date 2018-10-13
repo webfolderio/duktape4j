@@ -34,7 +34,4 @@ Licensed under the [Apache License](https://github.com/webfolderio/duktape4j/blo
 
 Note: The included C code from [Duktape](https://github.com/svaarala/duktape) is licensed under [MIT](https://github.com/svaarala/duktape/blob/master/LICENSE.txt) and [duktape-android](https://github.com/square/duktape-android) licensed under [Apache](https://github.com/square/duktape-android/blob/master/LICENSE).
 
-
-
-## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j?ref=badge_large)
