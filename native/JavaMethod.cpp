@@ -22,7 +22,7 @@
 #include "JavaType.h"
 #include "../LocalFrame.h"
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) || defined(_MSC_VER)
 #include <BaseTsd.h>
 typedef SSIZE_T ssize_t;
 #endif

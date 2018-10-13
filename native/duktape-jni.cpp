@@ -21,7 +21,7 @@
 #include "java/GlobalRef.h"
 #include "java/JavaExceptions.h"
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) || defined(_MSC_VER)
 #define timegm _mkgmtime
 #endif
 
@@ -45,7 +45,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     return JNI_VERSION_1_6;
 }
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) || defined(_MSC_VER)
+
 char* strptime(const char* s,
     const char* f,
     struct tm* tm) {
