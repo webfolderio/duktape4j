@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 @SuppressWarnings("unused") // Called from native code.
 public final class DuktapeException extends RuntimeException {
 
-	private static final long serialVersionUID = 4725802961498009466L;
+    private static final long serialVersionUID = 4725802961498009466L;
 /**
    * Duktape stack trace strings have multiple lines of the format "    at func (file.ext:line)".
    * "func" is optional, but we'll omit frames without a function, since it means the frame is in

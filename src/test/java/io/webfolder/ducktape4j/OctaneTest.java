@@ -27,35 +27,35 @@ import okio.Okio;
 
 public class OctaneTest {
 
-	@Test
-	@Ignore
-	public void test() throws Throwable {
-		Duktape duktape = Duktape.create();
-		String[] files = new File("src/test/resources/octane").list();
-		Arrays.sort(files);
-		for (String file : files) {
-			long tookMs = evaluateAsset(duktape, "octane/" + file);
-			StringBuilder output = new StringBuilder();
-			output.append(file).append(" eval took ").append(tookMs).append(" ms");
-			System.out.println(output.toString());
-			evaluateAsset(duktape, "octane.js");
-			String results = (String) duktape.evaluate("getResults();");
-			System.out.println(results);
-		}
-	}
+    @Test
+    @Ignore
+    public void test() throws Throwable {
+        Duktape duktape = Duktape.create();
+        String[] files = new File("src/test/resources/octane").list();
+        Arrays.sort(files);
+        for (String file : files) {
+            long tookMs = evaluateAsset(duktape, "octane/" + file);
+            StringBuilder output = new StringBuilder();
+            output.append(file).append(" eval took ").append(tookMs).append(" ms");
+            System.out.println(output.toString());
+            evaluateAsset(duktape, "octane.js");
+            String results = (String) duktape.evaluate("getResults();");
+            System.out.println(results);
+        }
+    }
 
-	private long evaluateAsset(Duktape duktape, String file) throws Throwable {
-		BufferedSource source = Okio.buffer(Okio.source(new File("src/test/resources/" + file)));
-		String script = source.readUtf8();
-		source.close();
+    private long evaluateAsset(Duktape duktape, String file) throws Throwable {
+        BufferedSource source = Okio.buffer(Okio.source(new File("src/test/resources/" + file)));
+        String script = source.readUtf8();
+        source.close();
 
-		long startNanos = System.nanoTime();
-		try {
-			duktape.evaluate(script, file);
-		} catch (Throwable t) {
-			System.err.println(file);
-			throw t;
-		}
-		return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNanos);
-	}
+        long startNanos = System.nanoTime();
+        try {
+            duktape.evaluate(script, file);
+        } catch (Throwable t) {
+            System.err.println(file);
+            throw t;
+        }
+        return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNanos);
+    }
 }

@@ -45,10 +45,10 @@ public final class Duktape implements Closeable {
     private static final boolean MAC     = OS.contains("mac");
 
     static {
-    	String path = getProperty("duktape4j.library.path");
-    	if ( path != null && ! path.trim().isEmpty() ) {
-    		load(path);
-    	} else {
+        String path = getProperty("duktape4j.library.path");
+        if ( path != null && ! path.trim().isEmpty() ) {
+            load(path);
+        } else {
             if (WINDOWS) {
                 loadLibrary("META-INF/duktape.dll");
             } else if (LINUX) {
@@ -56,7 +56,7 @@ public final class Duktape implements Closeable {
             } else if (MAC) {
                 loadLibrary("META-INF/duktape.dylib");
             }
-    	}
+        }
     }
 
   /**
@@ -151,7 +151,7 @@ public synchronized <T> T get(final String name, final Class<T> type) {
 
     final long instance = get(context, name, methods.values().toArray());
     @SuppressWarnings("resource")
-	final Duktape duktape = this;
+    final Duktape duktape = this;
 
     Object proxy = Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[]{ type },
         new InvocationHandler() {
@@ -206,19 +206,19 @@ public synchronized <T> T get(final String name, final Class<T> type) {
       boolean win = os.contains("windows");
       InputStream is = null;
       try {
-    	  is = cl.getResourceAsStream(lib);
+          is = cl.getResourceAsStream(lib);
           libFile = createTempFile("duktape", win ? ".dll" : ".so");
           copy(is, libFile, REPLACE_EXISTING);
       } catch (IOException e) {
           throw new RuntimeException(e);
       } finally {
-    	  if ( is != null ) {
-    		  try {
-				is.close();
-			} catch (IOException e) {
-				// ignore
-			}
-    	  }
+          if ( is != null ) {
+              try {
+                is.close();
+            } catch (IOException e) {
+                // ignore
+            }
+          }
       }
       libFile.toFile().deleteOnExit();
       load(libFile.toAbsolutePath().toString());

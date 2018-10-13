@@ -515,7 +515,7 @@ public final class DuktapeSetTest {
         if (args == null) return null;
         Arrays.sort(args, new Comparator<Object>() {
           @SuppressWarnings("unchecked")
-		@Override
+        @Override
           public int compare(Object lhs, Object rhs) {
             if (lhs == null) return -1;
             if (rhs == null) return 1;

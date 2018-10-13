@@ -25,9 +25,13 @@ public class ClasspathModuleLoader implements ModuleLoader {
     public void init() {
         String name = ModuleLoader.class.getSimpleName();
         context.set(name, ModuleLoader.class, this);
-        context.evaluate(format("(function() { var _require = require; require = function(id) { return ModuleLoader.isIndex(id) ? _require(id + '/index.js') : _require(id); } })(); Duktape.modSearch = function(id) { return %s.search(id); }",
-                            name),
-                            name + ".js");
+        String script = "(function() { var _require = require; " +
+                        "require = function(id) { " +
+                        "return ModuleLoader.isIndex(id) ? " +
+                        "_require(id + '/index.js') : _require(id); } })(); " +
+                        "Duktape.modSearch = " +
+                        "function(id) { return %s.search(id); }";
+        context.evaluate(format(script, name), name + ".js");
     }
 
     @Override
