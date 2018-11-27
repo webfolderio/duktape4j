@@ -28,6 +28,22 @@ How it is tested
 ----------------
 ducktape4j is regularly tested on [appveyor](https://ci.appveyor.com/project/WebFolder/duktape4j) (Windows), [circleci](https://circleci.com/gh/webfolderio/duktape4j) (Ubuntu) and [travis](https://travis-ci.org/webfolderio/duktape4j) (macOS).
 
+Integration with Maven
+----------------------
+
+To use the official release of duktape4j, please use the following snippet in your `pom.xml` file.
+
+Add the following to your POM's `<dependencies>` tag:
+
+```xml
+<dependency>
+    <groupId>io.webfolder</groupId>
+    <artifactId>duktape4j</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+
 License
 -------
 Licensed under the [Apache License](https://github.com/webfolderio/duktape4j/blob/master/LICENSE).
