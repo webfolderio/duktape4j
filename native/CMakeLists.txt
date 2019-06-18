@@ -5,8 +5,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 find_package(JNI)
 
-set(CMAKE_CXX_FLAGS_RELEASE "-Wno-terminate")
-
 if (JNI_FOUND)
     message (STATUS "JNI_INCLUDE_DIRS=${JNI_INCLUDE_DIRS}")
     message (STATUS "JNI_LIBRARIES=${JNI_LIBRARIES}")
@@ -15,6 +13,10 @@ if (JNI_FOUND)
 endif()
     INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH})
     INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH2})
+
+if(MSVC)
+  add_definitions(-D_WIN32_WINNT=0x0602)
+endif()
 
 file(GLOB_RECURSE duktape_SRC
     "*.h"
@@ -27,7 +29,8 @@ list(FILTER duktape_SRC EXCLUDE REGEX ".*CMakeCCompilerId.c$")
 
 add_library(duktape SHARED ${duktape_SRC})
 
-if(WIN32 OR APPLE)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS_RELEASE "-Wno-terminate")
     target_link_libraries(duktape -static -static-libstdc++)
 else()
     target_link_libraries(duktape)
