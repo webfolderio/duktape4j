@@ -1,6 +1,6 @@
 # duktape4j
 
-[![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=Windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![circleci](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=Ubuntu)](https://circleci.com/gh/webfolderio/duktape4j) [![travis](https://img.shields.io/travis/webfolderio/duktape4j.svg?label=macOS)](https://travis-ci.org/webfolderio/duktape4j)
+[![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=Windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![circleci](https://img.shields.io/circleci/build/github/webfolderio/duktape4j/master?label=Ubuntu)](https://circleci.com/gh/webfolderio/duktape4j) [![travis](https://img.shields.io/travis/webfolderio/duktape4j.svg?label=macOS)](https://travis-ci.org/webfolderio/duktape4j)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j?ref=badge_shield)
 
 Java binding for [Duktape](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
