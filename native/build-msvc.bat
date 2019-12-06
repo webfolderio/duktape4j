@@ -1,7 +1,7 @@
 C:\Python27\Scripts\pip2.exe install pyyaml
 git clone --quiet https://github.com/svaarala/duktape.git
 cd duktape
-git checkout --quiet 04a08e8cbe7101ee70e7f6de33619c5cb7f199ce
+git checkout --quiet f033815df73441bb440fdfcfd1c11c48a85705f0
 C:\Python27\python.exe tools/configure.py ^
  --source-directory src-input ^
  --output-directory src-custom ^
@@ -19,7 +19,7 @@ C:\Python27\python.exe tools/configure.py ^
 cd ..
 git clone --quiet https://github.com/square/duktape-android.git
 cd duktape-android
-git checkout --quiet 85e17a5e2e3826a5fc1fbf1e33534c726cca327f
+git checkout --quiet c4f21bf2fd9f24d1739048dc6f51d3bd1d5261b8
 cd ..
 copy /Y duktape\src-custom\*.* duktape-android\duktape\src\main\jni\duktape
 copy /Y duktape\extras\module-duktape\duk_module_duktape.h duktape-android\duktape\src\main\jni\duktape
