@@ -29,11 +29,11 @@ copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExcepti
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.h DuktapeContext.h.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.cpp DuktapeContext.cpp.patch
 cd duktape-android\duktape\src\main\jni
-mkdir build
+mkdir build 2> NUL
 cd build
 cmake .. -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release
 make
 cd ..\..\..\..\..\..
-mkdir ..\src\main\resources\META-INF
+mkdir ..\src\main\resources\META-INF 2> NUL
 copy /Y duktape-android\duktape\src\main\jni\build\libduktape.dll ..\src\main\resources\META-INF\duktape.dll
 strip ..\src\main\resources\META-INF\duktape.dll

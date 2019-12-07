@@ -30,7 +30,7 @@ copy /Y strptime.c duktape-android\duktape\src\main\jni\strptime.c
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\java\JavaType.cpp javatype.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.h DuktapeContext.h.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.cpp DuktapeContext.cpp.patch
-mkdir duktape-android\duktape\src\main\jni\build
+mkdir duktape-android\duktape\src\main\jni\build 2> NUL
 copy /Y duktape.vcxproj.patch duktape-android\duktape\src\main\jni\build\duktape.vcxproj.patch
 cd duktape-android\duktape\src\main\jni\build
 cmake .. -G "Visual Studio 15 2017 Win64"
@@ -38,6 +38,6 @@ cmake .. -G "Visual Studio 15 2017 Win64"
 "C:\Program Files\git\usr\bin\patch.exe" duktape.vcxproj duktape.vcxproj.patch
 "C:\Program Files\Git\usr\bin\unix2dos.exe" duktape.vcxproj
 cmake --build . --config Release
-cd ..\..\..\..\..\..
-mkdir ..\src\main\resources\META-INF
-copy /Y duktape-android\duktape\src\main\jni\build\duktape.dll ..\src\main\resources\META-INF\duktape.dll
+cd ..\..\..\..\..\..\..
+mkdir src\main\resources\META-INF 2> NUL
+copy /Y native\duktape-android\duktape\src\main\jni\build\Release\duktape.dll src\main\resources\META-INF\duktape.dll
