@@ -32,57 +32,58 @@
 #include <time.h>
 #include <iomanip>
 #include <sstream>
-namespace {
-
-std::unique_ptr<GlobalRef> duktapeClass;
-std::function<int(double)> getTimeZoneOffset = [](double d) { return 0; };
-
-void initialize(JNIEnv* env, jclass type) {
-  duktapeClass.reset(new GlobalRef(env, type));
-
-  auto tzClass = env->FindClass("java/util/TimeZone");
-  auto getDefaultTimeZone = env->GetStaticMethodID(tzClass, "getDefault", "()Ljava/util/TimeZone;");
-  auto getOffset = env->GetMethodID(tzClass, "getOffset", "(J)I");
-
-  const GlobalRef timeZoneClass(env, tzClass);
-  getTimeZoneOffset = [timeZoneClass, getDefaultTimeZone, getOffset](double time) {
-    auto theEnv = timeZoneClass.getJniEnv();
-    auto timeZone = theEnv->CallStaticObjectMethod(static_cast<jclass>(timeZoneClass.get()),
-                                                   getDefaultTimeZone);
-    const std::chrono::milliseconds offsetMillis(theEnv->CallIntMethod(timeZone, getOffset, time));
-    theEnv->DeleteLocalRef(timeZone);
-    return static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(offsetMillis).count());
-  };
-}
-
-} // anonymous namespace
 
 extern "C" {
 
+	static JavaVM *globalVM;
 
-#if defined(__MINGW32__) || defined(_MSC_VER)
+	JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+		globalVM = vm;
+		return JNI_VERSION_1_6;
+	}
 
-char* strptime(const char* s,
-    const char* f,
-    struct tm* tm) {
-    // Isn't the C++ standard lib nice? std::get_time is defined such that its
-    // format parameters are the exact same as strptime. Of course, we have to
-    // create a string stream first, and imbue it with the current C locale, and
-    // we also have to make sure we return the right things if it fails, or
-    // if it succeeds, but this is still far simpler an implementation than any
-    // of the versions in any of the C standard libraries.
-    std::istringstream input(s);
-    input.imbue(std::locale(setlocale(LC_ALL, nullptr)));
-    input >> std::get_time(tm, f);
-    if (input.fail()) {
-        return nullptr;
-    }
-    return (char*)(s + input.tellg());
-}
+#if defined(__MINGW32__)
+	char* strptime(const char* s,
+		const char* f,
+		struct tm* tm) {
+		// Isn't the C++ standard lib nice? std::get_time is defined such that its
+		// format parameters are the exact same as strptime. Of course, we have to
+		// create a string stream first, and imbue it with the current C locale, and
+		// we also have to make sure we return the right things if it fails, or
+		// if it succeeds, but this is still far simpler an implementation than any
+		// of the versions in any of the C standard libraries.
+		std::istringstream input(s);
+		input.imbue(std::locale(setlocale(LC_ALL, nullptr)));
+		input >> std::get_time(tm, f);
+		if (input.fail()) {
+			return nullptr;
+		}
+		return (char*)(s + input.tellg());
+	}
+#endif
+
+#if defined(_MSC_VER)
+#include "strptime.h"
 #endif
 
 duk_int_t android__get_local_tzoffset(duk_double_t time) {
-  return getTimeZoneOffset(time);
+	if (globalVM != NULL) {
+		JNIEnv *env;
+		int status = globalVM->GetEnv((void **)&env, JNI_VERSION_1_6);
+		if (status == JNI_OK) {
+			if (globalVM->AttachCurrentThread((void **)&env, NULL) == JNI_OK) {
+				auto tzClass = env->FindClass("java/util/TimeZone");
+				auto getDefaultTimeZone = env->GetStaticMethodID(tzClass, "getDefault", "()Ljava/util/TimeZone;");
+				auto getOffset = env->GetMethodID(tzClass, "getOffset", "(J)I");
+				auto timeZone = env->CallStaticObjectMethod(static_cast<jclass>(tzClass), getDefaultTimeZone);
+				const std::chrono::milliseconds offsetMillis(env->CallIntMethod(timeZone, getOffset, time));
+				duk_int_t result = static_cast<int>(std::chrono::duration_cast<std::chrono::seconds>(offsetMillis).count());
+				globalVM->DetachCurrentThread();
+				return result;
+			}
+		}
+	}
+	return 0;
 }
 
 /**
@@ -124,9 +125,6 @@ duk_bool_t android__date_parse_string(duk_context* ctx, const char* str) {
 
 JNIEXPORT jlong JNICALL
 Java_io_webfolder_ducktape4j_Duktape_createContext(JNIEnv* env, jclass type) {
-  static std::once_flag initialized;
-  std::call_once(initialized, initialize, std::ref(env), type);
-
   JavaVM* javaVM;
   env->GetJavaVM(&javaVM);
   try {

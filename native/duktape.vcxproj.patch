@@ -1,0 +1,11 @@
+--- duktape.vcxproj	2019-12-07 12:24:42.570739400 +0300
++++ duktape.vcxproj.copy	2019-12-07 12:26:12.642228000 +0300
+@@ -144,6 +144,8 @@
+       <ObjectFileName>$(IntDir)</ObjectFileName>
+       <DebugInformationFormat>
+       </DebugInformationFormat>
++      <Optimization>Custom</Optimization>
++      <AdditionalOptions>/Oi /Ot /Oy /Ob2 /GF /Gy %(AdditionalOptions)</AdditionalOptions>
+     </ClCompile>
+     <ResourceCompile>
+       <PreprocessorDefinitions>WIN32;_WINDOWS;_WIN32_WINNT=0x0602;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";duktape_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>

@@ -11,11 +11,7 @@ C:\Python27\python.exe tools/configure.py ^
  --compiler msvc ^
  --option-file config/examples/performance_sensitive.yaml ^
  -DDUK_USE_GET_MONOTONIC_TIME_WINDOWS_QPC ^
- -DDUK_USE_DATE_NOW_WINDOWS_SUBMS ^
- -DUK_USE_DATE_TZO_WINDOWS ^
- -DUK_USE_DATE_PARSE_STRING ^
- -DUK_USE_DATE_FORMAT_STRING ^
- -DUK_USE_PACK_MSVC_PRAGMA
+ -DDUK_USE_DATE_NOW_WINDOWS_SUBMS
 cd ..
 git clone --quiet https://github.com/square/duktape-android.git
 cd duktape-android
@@ -28,13 +24,19 @@ copy /Y CMakeLists.txt duktape-android\duktape\src\main\jni\CMakeLists.txt
 copy /Y duktape-jni.cpp duktape-android\duktape\src\main\jni\duktape-jni.cpp
 copy /Y JavaMethod.cpp duktape-android\duktape\src\main\jni\java\JavaMethod.cpp
 copy /Y JavaExceptions.cpp duktape-android\duktape\src\main\jni\java\JavaExceptions.cpp
+copy /Y strptime.h duktape-android\duktape\src\main\jni\strptime.h
+copy /Y strptime.c duktape-android\duktape\src\main\jni\strptime.c
+"C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\duktape\duk_config.h timezone.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\java\JavaType.cpp javatype.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.h DuktapeContext.h.patch
 "C:\Program Files\git\usr\bin\patch.exe" duktape-android\duktape\src\main\jni\DuktapeContext.cpp DuktapeContext.cpp.patch
-cd duktape-android\duktape\src\main\jni
-mkdir build
-cd build
-cmake .. -G "Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Release
+mkdir duktape-android\duktape\src\main\jni\build
+copy /Y duktape.vcxproj.patch duktape-android\duktape\src\main\jni\build\duktape.vcxproj.patch
+cd duktape-android\duktape\src\main\jni\build
+cmake .. -G "Visual Studio 15 2017 Win64"
+"C:\Program Files\Git\usr\bin\dos2unix.exe" duktape.vcxproj
+"C:\Program Files\git\usr\bin\patch.exe" duktape.vcxproj duktape.vcxproj.patch
+"C:\Program Files\Git\usr\bin\unix2dos.exe" duktape.vcxproj
 cmake --build . --config Release
 cd ..\..\..\..\..\..
 mkdir ..\src\main\resources\META-INF
