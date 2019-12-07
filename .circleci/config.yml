@@ -2,13 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: "circleci/buildpack-deps:bionic"
 
     working_directory: ~/repo
 
     steps:
       - checkout
       - run: sudo apt-get update -q --yes
+      - run: sudo apt-get -q --yes install openjdk-8-jdk
       - run: sudo apt-get -q --yes install python
       - run: sudo apt-get -q --yes install python-pip
       - run: sudo apt-get -q --yes install cmake
