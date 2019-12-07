@@ -10,6 +10,7 @@ jobs:
       - checkout
       - run: sudo apt-get update -q --yes
       - run: sudo apt-get -q --yes install openjdk-8-jdk
+      - run: sudo apt-get -q --yes install maven
       - run: sudo apt-get -q --yes install python
       - run: sudo apt-get -q --yes install python-pip
       - run: sudo apt-get -q --yes install cmake

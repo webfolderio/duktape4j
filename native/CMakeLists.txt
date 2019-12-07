@@ -41,6 +41,7 @@ add_library(duktape SHARED ${duktape_SRC})
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS_RELEASE "-Wno-terminate")
+    target_link_libraries(duktape -static-libstdc++)
 else()
     target_link_libraries(duktape)
 endif()
