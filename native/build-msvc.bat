@@ -40,4 +40,4 @@ cmake .. -G "Visual Studio 15 2017 Win64"
 cmake --build . --config Release
 cd ..\..\..\..\..\..
 mkdir ..\src\main\resources\META-INF
-copy /Y duktape-android\duktape\src\main\jni\build\libduktape.dll ..\src\main\resources\META-INF\duktape.dll
+copy /Y duktape-android\duktape\src\main\jni\build\duktape.dll ..\src\main\resources\META-INF\duktape.dll
