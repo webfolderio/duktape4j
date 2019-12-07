@@ -19,7 +19,7 @@ before_build:
   - set PATH=C:\msys64\mingw64;C:\msys64\mingw64\bin;C:\msys64\usr\bin\;%PATH%
 
 build_script:
-  - cd native && build.bat
+  - cd native && build-msvc.bat
   - mvn -DskipTests -q clean package
 
 test_script:
