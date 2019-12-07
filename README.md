@@ -1,7 +1,7 @@
 # duktape4j
 
 [![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=Windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![circleci](https://img.shields.io/circleci/build/github/webfolderio/duktape4j/master?label=Ubuntu)](https://circleci.com/gh/webfolderio/duktape4j) [![travis](https://img.shields.io/travis/webfolderio/duktape4j.svg?label=macOS)](https://travis-ci.org/webfolderio/duktape4j)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j?ref=badge_shield)[![License](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/webfolderio/duktape4j/blob/master/LICENSE)
 
 Java binding for [Duktape](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
 
@@ -20,9 +20,9 @@ This library is suitable for use in production systems.
 
 Supported Platforms
 -------------------
-* Windows 8 & Windows 10 (64-bit)
-* Ubuntu (64-bit)
-* macOS High Sierra (10.13)
+* Windows 8 & Windows 10 (64-bit) (MSVC 2017)
+* Ubuntu (64-bit) (GCC 8)
+* macOS High Sierra (10.13) (GCC 8.3.0)
 
 How it is tested
 ----------------
