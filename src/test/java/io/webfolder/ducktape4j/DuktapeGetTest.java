@@ -15,17 +15,17 @@
  */
 package io.webfolder.ducktape4j;
 
+import java.util.Date;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
-import java.util.Date;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-public class DuktapeGetTest {
+public final class DuktapeGetTest {
   private Duktape duktape;
 
   @Before public void setUp() {
@@ -120,6 +120,20 @@ public class DuktapeGetTest {
       fail();
     } catch (DuktapeException expected) {
       assertThat(expected).hasMessageThat().isEqualTo("nope");
+    }
+  }
+
+  @Test @Ignore public void proxyCallThrowsIncludeStacktrace() {
+    duktape.evaluate("function nop() { return 1; }");
+    duktape.evaluate("var value = { getValue: function() { return nope(); } };", "test.js");
+    TestInterface proxy = duktape.get("value", TestInterface.class);
+
+    try {
+      proxy.getValue();
+      fail();
+    } catch (DuktapeException expected) {
+      assertThat(expected.getStackTrace()).asList()
+          .contains(new StackTraceElement("JavaScript", "[anon]", "test.js", 1));
     }
   }
 
@@ -438,7 +452,7 @@ public class DuktapeGetTest {
     Object[] original = new Object[]{2, 4, 3, 1};
     Object[] sorted = sorter.sort(original);
     assertArrayEquals(sorted, new Object[]{1.0, 2.0, 3.0, 4.0});
-    assertThat(original).isNotSameAs(sorted);
+    assertThat(original).isNotSameInstanceAs(sorted);
 
     assertArrayEquals(sorter.sort(new Object[]{"b", "d", null, "a"}),
         new String[]{"a", "b", "d", null});

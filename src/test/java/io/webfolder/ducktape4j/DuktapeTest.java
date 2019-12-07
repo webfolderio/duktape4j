@@ -15,14 +15,13 @@
  */
 package io.webfolder.ducktape4j;
 
-import static com.google.common.truth.Truth.assertThat;
-import static org.junit.Assert.fail;
-
 import java.util.TimeZone;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.fail;
 
 public final class DuktapeTest {
   private Duktape duktape;
@@ -40,23 +39,26 @@ public final class DuktapeTest {
     assertThat(hello).isEqualTo("HELLO, WORLD!");
   }
 
+  @Test public void evaluateReturnsNull() {
+    Object result = duktape.evaluate("null;");
+    assertThat(result).isNull();
+  }
+
   @Test public void evaluateReturnsNumber() {
     int result = ((Double) duktape.evaluate("2 + 3;")).intValue();
     assertThat(result).isEqualTo(5);
   }
 
-  @SuppressWarnings("deprecation")
-@Test public void exceptionsInScriptThrowInJava() {
+  @Test public void exceptionsInScriptThrowInJava() {
     try {
       duktape.evaluate("nope();");
       fail();
     } catch (DuktapeException e) {
-      assertThat(e).hasMessage("ReferenceError: identifier 'nope' undefined");
+      assertThat(e).hasMessageThat().isEqualTo("ReferenceError: identifier 'nope' undefined");
     }
   }
 
-  @SuppressWarnings("deprecation")
-@Test public void exceptionsInScriptIncludeStackTrace() {
+  @Test public void exceptionsInScriptIncludeStackTrace() {
     try {
       duktape.evaluate("\n"
             + "f1();\n"           // Line 2.
@@ -71,8 +73,8 @@ public final class DuktapeTest {
             + "}\n", "test.js");
       fail();
     } catch (DuktapeException e) {
-      assertThat(e).hasMessage("ReferenceError: identifier 'nope' undefined");
-      assertThat(e.getStackTrace()).asList().containsAllOf(
+      assertThat(e).hasMessageThat().isEqualTo("ReferenceError: identifier 'nope' undefined");
+      assertThat(e.getStackTrace()).asList().containsAtLeast(
               new StackTraceElement("JavaScript", "eval", "test.js", 2),
               new StackTraceElement("JavaScript", "f1", "test.js", 5),
               new StackTraceElement("JavaScript", "f2", "test.js", 10));
@@ -83,7 +85,7 @@ public final class DuktapeTest {
     TimeZone original = TimeZone.getDefault();
     try {
       TimeZone.setDefault(TimeZone.getTimeZone("GMT+2:00"));
-      String date = duktape.evaluate("new Date(0).toString();").toString();
+      String date = String.valueOf(duktape.evaluate("new Date(0).toString();"));
       assertThat(date).isEqualTo("1970-01-01 02:00:00.000+02:00");
       int offset = ((Double) duktape.evaluate("new Date(0).getTimezoneOffset();")).intValue();
       assertThat(offset).isEqualTo(-120);
@@ -106,6 +108,8 @@ public final class DuktapeTest {
           .isEqualTo("2015-03-25 00:00:00.000+02:00");
       assertThat(duktape.evaluate("new Date('25 Mar 2015').toString();"))
           .isEqualTo("2015-03-25 00:00:00.000+02:00");
+      assertThat(duktape.evaluate("new Date('Wednesday March 25 2015').toString();"))
+          .isEqualTo("2015-03-25 00:00:00.000+02:00");
     } finally {
       TimeZone.setDefault(original);
     }
@@ -127,8 +131,15 @@ public final class DuktapeTest {
           .isEqualTo("2015-03-25 23:45:12.000-02:00");
       assertThat(duktape.evaluate("new Date('25 Mar 2015 23:45:12').toString();"))
           .isEqualTo("2015-03-25 23:45:12.000-02:00");
+      assertThat(duktape.evaluate("new Date('Wednesday March 25 2015 23:45:12').toString();"))
+          .isEqualTo("2015-03-25 23:45:12.000-02:00");
     } finally {
       TimeZone.setDefault(original);
     }
+  }
+
+  @Test
+  public void parseManyDates() {
+    duktape.evaluate("for (var i = 0; i < 100000; ++i) { new Date(i).toString(); }");
   }
 }

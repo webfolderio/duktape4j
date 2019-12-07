@@ -15,18 +15,17 @@
  */
 package io.webfolder.ducktape4j;
 
-import static com.google.common.truth.Truth.assertThat;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.fail;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.TimeZone;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.fail;
 
 public final class DuktapeSetTest {
   private Duktape duktape;
@@ -39,14 +38,14 @@ public final class DuktapeSetTest {
     duktape.close();
   }
 
-  @SuppressWarnings("deprecation")
-@Test public void setNonInterface() {
+  @Test public void setNonInterface() {
     try {
       duktape.set("s", String.class, "foo");
       fail();
     } catch (UnsupportedOperationException expected) {
       assertThat(expected)
-          .hasMessage("Only interfaces can be bound. Received: class java.lang.String");
+          .hasMessageThat()
+          .isEqualTo("Only interfaces can be bound. Received: class java.lang.String");
     }
   }
 
@@ -79,8 +78,7 @@ public final class DuktapeSetTest {
     }
   }
 
-  @SuppressWarnings("deprecation")
-@Test public void setSameNameTwiceFails() {
+  @Test public void setSameNameTwiceFails() {
     duktape.set("value", TestInterface.class, new TestInterface() {
       @Override public String getValue() {
         return "foo";
@@ -95,12 +93,13 @@ public final class DuktapeSetTest {
       });
       fail();
     } catch (IllegalArgumentException expected) {
-      assertThat(expected).hasMessage("A global object called value already exists");
+      assertThat(expected)
+          .hasMessageThat()
+          .isEqualTo("A global object called value already exists");
     }
   }
 
-  @SuppressWarnings("deprecation")
-@Test public void exceptionsFromJavaWithUnifiedStackTrace() {
+  @Test public void exceptionsFromJavaWithUnifiedStackTrace() {
     TestInterface boundObject = new TestInterface() {
       @Override public String getValue() {
         throw new UnsupportedOperationException("Cannot getValue");
@@ -121,7 +120,7 @@ public final class DuktapeSetTest {
           + "}\n", "test.js");
       fail();
     } catch (UnsupportedOperationException e) {
-      assertThat(e).hasMessage("Cannot getValue");
+      assertThat(e).hasMessageThat().isEqualTo("Cannot getValue");
 
       StackTraceElement[] stackTrace = e.getStackTrace();
 
