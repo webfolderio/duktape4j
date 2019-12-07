@@ -408,14 +408,14 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	case 'C':
 	  /* Match century number.  */
 	  get_number (0, 99, 2);
-	  century = val;
+	  century = (int) val;
 	  want_xday = 1;
 	  break;
 	case 'd':
 	case 'e':
 	  /* Match day of month.  */
 	  get_number (1, 31, 2);
-	  tm->tm_mday = val;
+	  tm->tm_mday = (int) val;
 	  have_mday = 1;
 	  want_xday = 1;
 	  break;
@@ -452,7 +452,7 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	case 'H':
 	  /* Match hour in 24-hour clock.  */
 	  get_number (0, 23, 2);
-	  tm->tm_hour = val;
+	  tm->tm_hour = (int) val;
 	  have_I = 0;
 	  break;
 	case 'I':
@@ -464,20 +464,20 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	case 'j':
 	  /* Match day number of year.  */
 	  get_number (1, 366, 3);
-	  tm->tm_yday = val - 1;
+	  tm->tm_yday = (int) val - 1;
 	  have_yday = 1;
 	  break;
 	case 'm':
 	  /* Match number of month.  */
 	  get_number (1, 12, 2);
-	  tm->tm_mon = val - 1;
+	  tm->tm_mon = (int) val - 1;
 	  have_mon = 1;
 	  want_xday = 1;
 	  break;
 	case 'M':
 	  /* Match minute.  */
 	  get_number (0, 59, 2);
-	  tm->tm_min = val;
+	  tm->tm_min = (int) val;
 	  break;
 	case 'n':
 	case 't':
@@ -525,7 +525,7 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	break;
 	case 'S':
 	    get_number (0, 61, 2);
-	    tm->tm_sec = val;
+	    tm->tm_sec = (int) val;
 	    break;
 	case 'X':
     {
@@ -575,7 +575,7 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	case 'w':
 	    /* Match number of weekday.  */
 	    get_number (0, 6, 1);
-	    tm->tm_wday = val;
+	    tm->tm_wday = (int) val;
 	    have_wday = 1;
 	    break;
 	case 'y':
@@ -583,7 +583,7 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	    get_number (0, 99, 2);
 	    /* The "Year 2000: The Millennium Rollover" paper suggests that
 	       values in the range 69-99 refer to the twentieth century.  */
-	    tm->tm_year = val >= 69 ? val : val + 100;
+	    tm->tm_year = val >= 69 ? (int) val : (int) val + 100;
 	    /* Indicate that we want to use the century, if specified.  */
 	    want_century = 1;
 	    want_xday = 1;
@@ -591,7 +591,7 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	case 'Y':
 	    /* Match year including century number.  */
 	    get_number (0, 9999, 4);
-	    tm->tm_year = val - 1900;
+	    tm->tm_year = (int) val - 1900;
 	    want_century = 0;
 	    want_xday = 1;
 	    break;
@@ -614,7 +614,7 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	    case 'e':
 		/* Match day of month using alternate numeric symbols.  */
 		get_alt_number (1, 31, 2);
-		tm->tm_mday = val;
+		tm->tm_mday = (int) val;
 		have_mday = 1;
 		want_xday = 1;
 		break;
@@ -622,32 +622,32 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 		/* Match hour in 24-hour clock using alternate numeric
 		   symbols.  */
 		get_alt_number (0, 23, 2);
-		tm->tm_hour = val;
+		tm->tm_hour = (int) val;
 		have_I = 0;
 		break;
 	    case 'I':
 		/* Match hour in 12-hour clock using alternate numeric
 		   symbols.  */
 		get_alt_number (1, 12, 2);
-		tm->tm_hour = val - 1;
+		tm->tm_hour = (int) val - 1;
 		have_I = 1;
 		break;
 	    case 'm':
 		/* Match month using alternate numeric symbols.  */
 		get_alt_number (1, 12, 2);
-		tm->tm_mon = val - 1;
+		tm->tm_mon = (int) val - 1;
 		have_mon = 1;
 		want_xday = 1;
 		break;
 	    case 'M':
 		/* Match minutes using alternate numeric symbols.  */
 		get_alt_number (0, 59, 2);
-		tm->tm_min = val;
+		tm->tm_min = (int) val;
 		break;
 	    case 'S':
 		/* Match seconds using alternate numeric symbols.  */
 		get_alt_number (0, 61, 2);
-		tm->tm_sec = val;
+		tm->tm_sec = (int) val;
 		break;
 	    case 'U':
 	    case 'V':
@@ -659,13 +659,13 @@ strptime_internal (const char *rp, const char *fmt, struct tm *tm,
 	    case 'w':
 		/* Match number of weekday using alternate numeric symbols.  */
 		get_alt_number (0, 6, 1);
-		tm->tm_wday = val;
+		tm->tm_wday = (int) val;
 		have_wday = 1;
 		break;
 	    case 'y':
 		/* Match year within century using alternate numeric symbols.  */
 		get_alt_number (0, 99, 2);
-		tm->tm_year = val >= 69 ? val : val + 100;
+		tm->tm_year = val >= 69 ? (int) val : (int) val + 100;
 		want_xday = 1;
 		break;
 	    default:
