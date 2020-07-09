@@ -29,7 +29,7 @@ patch duktape-android/duktape/src/main/jni/DuktapeContext.cpp DuktapeContext.cpp
 cd duktape-android/duktape/src/main/jni
 mkdir build
 cd build
-CC=gcc-8 CXX=g++-8 cmake .. -DCMAKE_BUILD_TYPE=Release
+CC=clang CXX=clang++ cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 cd ../../../../../..
 mkdir -p ../src/main/resources/META-INF
