@@ -1,7 +1,6 @@
 # duktape4j
 
-[![AppVeyor](https://img.shields.io/appveyor/ci/WebFolder/duktape4j.svg?label=Windows)](https://ci.appveyor.com/project/WebFolder/duktape4j) [![circleci](https://img.shields.io/circleci/build/github/webfolderio/duktape4j/master?label=Ubuntu)](https://circleci.com/gh/webfolderio/duktape4j) [![travis](https://img.shields.io/travis/webfolderio/duktape4j.svg?label=macOS)](https://travis-ci.org/webfolderio/duktape4j)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j?ref=badge_shield) [![License](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/webfolderio/duktape4j/blob/master/LICENSE)
+[![duktape4j](https://github.com/webfolderio/duktape4j/workflows/duktape4j/badge.svg)](https://github.com/webfolderio/duktape4j/actions) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwebfolderio%2Fduktape4j?ref=badge_shield) [![License](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/webfolderio/duktape4j/blob/master/LICENSE)
 
 Java binding for [Duktape 2.5](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
 
@@ -39,13 +38,13 @@ Add the following to your POM's `<dependencies>` tag:
 <dependency>
     <groupId>io.webfolder</groupId>
     <artifactId>duktape4j</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
 Download
 --------
-[duktape4j-1.1.0.jar](https://search.maven.org/remotecontent?filepath=io/webfolder/duktape4j/1.1.0/duktape4j-1.1.0.jar) - 1346 KB
+[duktape4j-1.2.0.jar](https://search.maven.org/remotecontent?filepath=io/webfolder/duktape4j/1.2.0/duktape4j-1.2.0.jar) - 1346 KB
 
 Usage Examples
 --------------

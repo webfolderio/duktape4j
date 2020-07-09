@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.webfolder</groupId>
   <artifactId>duktape4j</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <name>duktape4j</name>
   <description>The Duktape embeddable Javascript engine packaged for Java.</description>
   <licenses>
@@ -47,6 +47,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -65,7 +66,7 @@
             <index>true</index>
             <manifestEntries>
               <Implementation-Title>duktape4j</Implementation-Title>
-              <Implementation-Version>1.1.0</Implementation-Version>
+              <Implementation-Version>${project.version}</Implementation-Version>
               <Automatic-Module-Name>io.webfolder.duktape4j</Automatic-Module-Name>
             </manifestEntries>
           </archive>
@@ -132,7 +133,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -141,10 +142,10 @@
       <version>1.0</version>
       <scope>test</scope>
       <exclusions>
-      	<exclusion>
-      		<groupId>com.googlecode.java-diff-utils</groupId>
-      		<artifactId>diffutils</artifactId>
-      	</exclusion>
+        <exclusion>
+          <groupId>com.googlecode.java-diff-utils</groupId>
+          <artifactId>diffutils</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
