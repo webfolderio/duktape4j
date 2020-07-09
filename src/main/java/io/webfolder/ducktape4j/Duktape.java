@@ -18,8 +18,6 @@ package io.webfolder.ducktape4j;
 import static java.io.File.pathSeparator;
 import static java.lang.System.getProperty;
 import static java.lang.System.load;
-import static java.nio.file.Files.copy;
-import static java.nio.file.Files.createTempFile;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static java.util.Locale.ENGLISH;
 
@@ -29,12 +27,17 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
 /** A simple EMCAScript (Javascript) interpreter. */
 public final class Duktape implements Closeable {
+
+    // temporary directory location
+    private static final Path tmpdir = Paths.get(getProperty("java.io.tmpdir")).toAbsolutePath();
 
     private static final String  OS      = getProperty("os.name").toLowerCase(ENGLISH);
 
@@ -44,6 +47,8 @@ public final class Duktape implements Closeable {
 
     private static final boolean MAC     = OS.contains("mac");
 
+    private static final String version  = "1.2.1";
+ 
     static {
         String path = getProperty("duktape4j.library.path");
         if ( path != null && ! path.trim().isEmpty() ) {
@@ -200,27 +205,34 @@ public synchronized <T> T get(final String name, final Class<T> type) {
   private static native Object call(long context, long instance, Object method, Object[] args);
 
   private static void loadLibrary(String lib) {
-      Path libFile;
       ClassLoader cl = Duktape.class.getClassLoader();
-      String os = getProperty("os.name").toLowerCase(ENGLISH);
-      boolean win = os.contains("windows");
-      InputStream is = null;
-      try {
-          is = cl.getResourceAsStream(lib);
-          libFile = createTempFile("duktape", win ? ".dll" : ".so");
-          copy(is, libFile, REPLACE_EXISTING);
-      } catch (IOException e) {
-          throw new RuntimeException(e);
-      } finally {
-          if ( is != null ) {
-              try {
-                is.close();
-            } catch (IOException e) {
-                // ignore
-            }
+      String extension = MAC ? "dylib" : WINDOWS ? "dll" : "so";
+      Path libFile = tmpdir.resolve("duktape4j-" + version)
+                             .resolve("duktape4j." + extension);
+      if ( ! Files.exists(libFile) ) {
+          InputStream is = null;
+          try {
+              is = cl.getResourceAsStream(lib);
+              if (is == null) {
+                  throw new DuktapeException("library not found: " + lib);
+              }
+              if ( ! Files.exists(libFile.getParent()) ) {
+                  Files.createDirectory(libFile.getParent());
+              }
+              Files.createFile(libFile);
+              Files.copy(is, libFile, REPLACE_EXISTING);
+          } catch (IOException e) {
+              throw new RuntimeException(e);
+          } finally {
+              if ( is != null ) {
+                  try {
+                      is.close();
+                  } catch (IOException e) {
+                      // ignore
+                  }
+              }
           }
       }
-      libFile.toFile().deleteOnExit();
       load(libFile.toAbsolutePath().toString());
   }
 }

@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.webfolder</groupId>
   <artifactId>duktape4j</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
   <name>duktape4j</name>
   <description>The Duktape embeddable Javascript engine packaged for Java.</description>
   <licenses>
