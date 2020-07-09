@@ -1,8 +1,8 @@
-C:\Python27\Scripts\pip2.exe install pyyaml
+pip2.exe install pyyaml
 git clone --quiet https://github.com/svaarala/duktape.git
 cd duktape
 git checkout --quiet f033815df73441bb440fdfcfd1c11c48a85705f0
-C:\Python27\python.exe tools/configure.py ^
+python.exe tools/configure.py ^
  --source-directory src-input ^
  --output-directory src-custom ^
  --config-metadata config ^
