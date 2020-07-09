@@ -44,7 +44,7 @@ Add the following to your POM's `<dependencies>` tag:
 
 Download
 --------
-[duktape4j-1.2.0.jar](https://search.maven.org/remotecontent?filepath=io/webfolder/duktape4j/1.2.0/duktape4j-1.2.0.jar) - 1346 KB
+[duktape4j-1.2.0.jar](https://search.maven.org/remotecontent?filepath=io/webfolder/duktape4j/1.2.0/duktape4j-1.2.0.jar) - 1189 KB
 
 Usage Examples
 --------------
