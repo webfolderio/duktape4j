@@ -140,6 +140,12 @@
       <artifactId>truth</artifactId>
       <version>1.0</version>
       <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>com.googlecode.java-diff-utils</groupId>
+      		<artifactId>diffutils</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.squareup.okio</groupId>

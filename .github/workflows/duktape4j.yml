@@ -85,8 +85,9 @@ jobs:
         yum -y install scl-utils
         yum -y install centos-release-scl-rh
         yum -y install python27
-        yum -y install python-pip
         python -V
+        curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+        python get-pip.py
         pip -V
         mkdir -p archive
         cd archive
