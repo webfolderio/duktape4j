@@ -21,7 +21,7 @@ Supported Platforms
 -------------------
 * Windows 8 & Windows 10 (64-bit) (MSVC 2017)
 * Ubuntu (64-bit) (gcc)
-* macOS High Sierra (10.15) (clang)
+* macOS Catalina (10.15) (clang)
 
 How it is tested
 ----------------
