@@ -5,7 +5,7 @@ on:
 jobs:
   windows:
     name: windows
-    runs-on: windows-latest
+    runs-on: windows-2016
     if: "contains(toJSON(github.event.commits.*.message), '[build windows]')"
     steps:
     - uses: actions/checkout@v2
