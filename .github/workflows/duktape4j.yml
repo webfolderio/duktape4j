@@ -35,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: duktape4j-windows
-        path: src/main/resources/META-INF/duktape4j.dll
+        path: src\main\resources\META-INF\duktape.dll
