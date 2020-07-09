@@ -67,3 +67,38 @@ jobs:
       with:
         name: duktape4j-macos
         path: src/main/resources/META-INF/duktape.dylib
+  centos:
+    name: centos
+    runs-on: ubuntu-latest
+    if: "contains(toJSON(github.event.commits.*.message), '[build centos]')"
+    container: centos:7
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout project
+    - name: Build
+      run: |
+        yum -y update
+        yum -y group install "Development Tools"
+        yum -y install wget
+        yum -y install unzip
+        yum -y install maven
+        mkdir -p archive
+        cd archive
+        if [ ! -d "cmake" ]; then
+          wget -q https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3-Linux-x86_64.tar.gz
+          tar xfz cmake-3.17.3-Linux-x86_64.tar.gz
+          mv cmake-3.17.3-Linux-x86_64/ cmake/
+        fi
+        export PATH=$PATH:$PWD/cmake/bin
+        cd ..
+        cd build
+        ./build.sh
+    - name: Test
+      run: |
+        mvn -q -B -DskipTests package
+        mvn test
+    - name: Archive library
+      uses: actions/upload-artifact@v1
+      with:
+        name: duktape4j-centos
+        path: src/main/resources/META-INF/duktape.dylib
