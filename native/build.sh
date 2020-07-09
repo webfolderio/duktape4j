@@ -1,4 +1,4 @@
-pip2 show pyyaml || pip2 install pyyaml
+pip show pyyaml || pip install pyyaml
 git clone --quiet https://github.com/svaarala/duktape.git
 cd duktape
 git checkout --quiet f033815df73441bb440fdfcfd1c11c48a85705f0
