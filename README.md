@@ -4,7 +4,7 @@
 
 Java binding for [Duktape 2.5](https://github.com/svaarala/duktape), a very compact embedded ECMAScript (JavaScript) engine.
 
-ducktape4j is Java port of [duktape-android](https://github.com/square/duktape-android/).
+duktape4j is Java port of [duktape-android](https://github.com/square/duktape-android/).
 
 Supported Java Versions
 -----------------------
@@ -26,6 +26,7 @@ Supported Platforms
 How it is tested
 ----------------
 duktape4j is regularly tested on [github actions](https://github.com/webfolderio/duktape4j/actions).
+
 Integration with Maven
 ----------------------
 
