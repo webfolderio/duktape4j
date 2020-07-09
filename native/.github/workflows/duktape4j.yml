@@ -1,0 +1,32 @@
+name: duktape4j
+
+on:
+  [push]
+jobs:
+  windows:
+    name: windows
+    runs-on: windows-latest
+    if: "contains(toJSON(github.event.commits.*.message), '[build windows]')"
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout project
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        java-package: jdk
+        architecture: x64
+    - name: Build
+      run: |
+        cd native
+        build-msvc.bat
+      shell: cmd
+    - name: Test
+      run: |
+         mvn --no-transfer-progress -q -B -DskipTests package
+         mvn --no-transfer-progress test
+      shell: cmd
+    - name: Archive library
+      uses: actions/upload-artifact@v1
+      with:
+        name: duktape4j-windows
+        path: src/main/resources/META-INF/duktape4j.dll
