@@ -91,7 +91,7 @@ jobs:
         fi
         export PATH=$PATH:$PWD/cmake/bin
         cd ..
-        cd build
+        cd native
         ./build.sh
     - name: Test
       run: |
