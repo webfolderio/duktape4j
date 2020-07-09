@@ -10,6 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: Checkout project
+    - name: add python to PATH
+    - uses: actions/setup-python@v2
+      with:
+       python-version: '2.x'
+       architecture: 'x64'
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.0
       with:
