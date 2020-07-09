@@ -85,7 +85,6 @@ jobs:
         yum -y install scl-utils
         yum -y install centos-release-scl-rh
         yum -y install python27
-        scl -y enable python27 bash
         yum -y install python-pip
         python -V
         pip -V
