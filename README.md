@@ -38,13 +38,13 @@ Add the following to your POM's `<dependencies>` tag:
 <dependency>
     <groupId>io.webfolder</groupId>
     <artifactId>duktape4j</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
 Download
 --------
-[duktape4j-1.2.0.jar](https://search.maven.org/remotecontent?filepath=io/webfolder/duktape4j/1.2.0/duktape4j-1.2.0.jar) - 1189 KB
+[duktape4j-1.2.1.jar](https://search.maven.org/remotecontent?filepath=io/webfolder/duktape4j/1.2.1/duktape4j-1.2.1.jar) - 1189 KB
 
 Usage Examples
 --------------
